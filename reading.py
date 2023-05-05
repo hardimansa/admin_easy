@@ -9,20 +9,20 @@ with open('BOC-A12.ios') as f:
 
 
 
-STIG = open('BOC-A12.ios')
+STIG = open('xios')
 for line in STIG:
     line = line.rstrip()
     if re.search('secret', line):
         print(line)
         print(f'STIG-1 found')
 
-STIG = open('BOC-A12.ios')
+STIG = open('x2.ios')
 for line in STIG:
     line = line.rstrip()
     if re.search('username', line):
         print(line.split())
 
-STIG = open('BOC-A12.ios')
+STIG = open('x.ios')
 for line in STIG:
     line = line.rstrip()
     if re.search('access-list', line):
