@@ -1,6 +1,6 @@
 
-
-
+z="matched"
+y="not matched"
 
  # STIG reference checklist (keyword)
 with open('keyword.txt', 'r') as f:
@@ -15,14 +15,8 @@ for keyword in keyword:
     for line in lines:
         if keyword in line:
            # print(f'"{keyword}" found in "{line.strip()}"')
-            print(f' :):):):):):) "{line.strip()}" found')
+            print(f' "{z}" "{line.strip()}" ')
          
     else:
         if keyword not in line:
-            print(f' !!!! --- !!!! "{keyword}" not found in "{line.strip()}" BRO')
-
-        
-         
-
-
-
+           print(f' "{keyword}" !__! "{y}" BRO')
