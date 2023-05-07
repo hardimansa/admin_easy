@@ -1,5 +1,7 @@
+from dis import findlinestarts
+from gettext import find
 
-z="matched"
+z="Audit Keyword Matched"
 y="not matched"
 
  # STIG reference checklist (keyword)
@@ -15,8 +17,10 @@ for keyword in keyword:
     for line in lines:
         if keyword in line:
            # print(f'"{keyword}" found in "{line.strip()}"')
-            print(f' "{z}" "{line.strip()}" ')
+            print(f' \n \v \t \t \t \t \t \t "{z}" "{line.rstrip()}" ')
          
-    else:
-        if keyword not in line:
-           print(f' "{keyword}" !__! "{y}" BRO')
+
+
+
+
+
