@@ -24,7 +24,7 @@ with open(file="routerlist.txt", mode="r") as hosts:
 
 with open('commands.txt') as f:
     commands = f.read().splitlines()
-    print(lines)
+    print(commands)
 
 with open('shouldnotfind.txt') as b:
     bad = b.read().splitlines()
