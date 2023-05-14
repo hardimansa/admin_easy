@@ -24,11 +24,11 @@ with open(file="routerlist.txt", mode="r") as hosts:
 
 with open('commands.txt') as f:
     commands = f.read().splitlines()
-    print(commands)
+    #print(commands)
 
 with open('shouldnotfind.txt') as b:
     bad = b.read().splitlines()
-    print(bad)
+   # print(bad)
 
 
 
@@ -44,7 +44,7 @@ for device in devices:
     print(f'Connected to {device["ip"]}')  
     output = net_connect.send_config_set(commands)
     output2 = net_connect.send_config_set(bad)
-    print(output)
+   # print(output)
     file = open(f' {device["ip"]}', "a")
     file.write(output)
     file.close
@@ -52,4 +52,5 @@ for device in devices:
     file2.write(output2)
     file2.close
    
+
 
