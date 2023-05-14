@@ -2,12 +2,11 @@ from netmiko import ConnectHandler
 from getpass import getpass
 import json
 
-# ensure routerlist.txt / commands.txt are populated with desired host ip's
+# ensure routerlist.txt / commands.txt / shouldnotfind.txt are populated with desired host ip's, commands, stig- show commands
 
 
 uname = input("Username: ")
 pythonpassword= getpass("Password: ")
-type = 'cisco_ios'
 
 
 with open(file="routerlist.txt", mode="r") as hosts:
@@ -18,37 +17,39 @@ with open(file="routerlist.txt", mode="r") as hosts:
             "ip": ip,
             "username": uname,
             "password": pythonpassword,
+          # no need for sesssion log with output section below -  "session_log": ip
         }
         for ip in hosts.read().splitlines()
     ]
 
-    
-# enter commands to execute on all hosts in routerlist.txt
-    
 with open('commands.txt') as f:
     lines = f.read().splitlines()
     print(lines)
 
+with open('shouldnotfind.txt') as b:
+    bad = b.read().splitlines()
+    print(bad)
 
-# json formated view of netmiko router list, optional 
+
 
 json_formatted = json.dumps(devices, indent=4)
 print(json_formatted)
 
 
 
-#  connect to each system, execute commands 
-
+#  SEND COMMANDS & CREATE OUTPUT FILES
 for device in devices:
     print(f'Connecting to {device["ip"]}')  
     net_connect = ConnectHandler(**device)
     print(f'Connected to {device["ip"]}')  
-    prompt = net_connect.find_prompt()
     output = net_connect.send_config_set(lines)
+    output2 = net_connect.send_config_set(bad)
     print(output)
-    # dump output to a file for parsing 
-    file = open("commandoutput.txt", "a")
+    file = open(f' {device["ip"]}', "a")
     file.write(output)
     file.close
-
+    file2 = open(f' {device["ip"]}', "a")
+    file2.write(output2)
+    file2.close
+   
 
