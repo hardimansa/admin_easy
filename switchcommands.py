@@ -10,7 +10,7 @@ pythonpassword= getpass("Password: ")
 
 
 with open(file="routerlist.txt", mode="r") as hosts:
-    # A list comprehension
+    # list of devices in netmiko format
     devices = [
         {
             "device_type": "cisco_ios",
@@ -24,13 +24,14 @@ with open(file="routerlist.txt", mode="r") as hosts:
 
 with open('commands.txt') as f:
     commands = f.read().splitlines()
-    #print(commands)
+    
 
 with open('shouldnotfind.txt') as b:
     bad = b.read().splitlines()
-   # print(bad)
+    
 
 
+# JSON print of device configuration
 
 json_formatted = json.dumps(devices, indent=4)
 print(json_formatted)
@@ -44,13 +45,12 @@ for device in devices:
     print(f'Connected to {device["ip"]}')  
     output = net_connect.send_config_set(commands)
     output2 = net_connect.send_config_set(bad)
-   # print(output)
     file = open(f' {device["ip"]}', "a")
     file.write(output)
-    file.close
-    file2 = open(f' {device["ip"]}', "a")
-    file2.write(output2)
-    file2.close
+    file.write(output2)
+
+   
+
    
 
 
