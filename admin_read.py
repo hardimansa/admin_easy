@@ -1,8 +1,6 @@
-from dis import findlinestarts
-from gettext import find
+### Populate "keyword.txt with information used in manual STIG
 
 z="Audit Keyword Matched"
-y="not matched"
 
  # STIG reference checklist (keyword)
 with open('keyword.txt', 'r') as f:
@@ -16,10 +14,7 @@ with open('1.ios', 'r') as f:
 for keyword in keyword:
     for line in lines:
         if keyword in line:
-           # print(f'"{keyword}" found in "{line.strip()}"')
-            print(f' \n \v \t \t \t \t \t \t "{z}" "{line.rstrip()}" ')
-         
-
+           print(f' \n \v \t "{z}" "{line.rstrip()}" ')
 
 
 
