@@ -3,6 +3,8 @@ import os
 directory = 'configs'
 output_file = 'combined.txt'
 
+
+### Combine config files in the directory ###
 with open(output_file, "a") as outfile:
    for filename in os.listdir(directory):
       filepath = os.path.join(directory, filename)
