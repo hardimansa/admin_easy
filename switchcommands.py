@@ -2,7 +2,7 @@ from netmiko import ConnectHandler
 from getpass import getpass
 import json
 
-# ensure routerlist.txt / commands.txt / shouldnotfind.txt are populated with desired host ip's, commands, stig- show commands
+# ensure routerlist.txt / commands.txt / are populated
 
 
 uname = input("Username: ")
@@ -26,10 +26,7 @@ with open('commands.txt') as f:
     commands = f.read().splitlines()
     
 
-with open('shouldnotfind.txt') as b:
-    bad = b.read().splitlines()
     
-
 
 # JSON print of device configuration
 
@@ -44,13 +41,8 @@ for device in devices:
     net_connect = ConnectHandler(**device)
     print(f'Connected to {device["ip"]}')  
     output = net_connect.send_config_set(commands)
-    output2 = net_connect.send_config_set(bad)
+    print(output)
     file = open(f' {device["ip"]}', "a")
     file.write(output)
-    file.write(output2)
-
-   
-
-   
 
 
