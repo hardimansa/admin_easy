@@ -1,15 +1,15 @@
 import sys
 
-## LSIL option, reads function from ex_connect.py
+## ex option, reads function from ex_connect.py
 
-lsil = input("Do you want to modify the ex?  ")
-if lsil == ('yes'):
-       from lsil_connect import lsil_connect
+ex = input("Do you want to modify the ex?  ")
+if ex == ('yes'):
+       from ex_connect import ex_connect
        print("Connecting to hosts in routerlist.txt, exiting when complete")
        ex_connect()
        sys.exit()
 
-elif lsil ==(''):
+elif ex ==(''):
        pass
 
 
